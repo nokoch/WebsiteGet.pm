@@ -3,7 +3,6 @@ package WebsiteGet;
 use strict;
 use warnings;
 use IO::Socket;
-use Data::Dumper;
 
 my %options = (timeout => 10, optionalHeaders => { "User-Agent" => "WebsiteGet" });
 my %downloadedData = ();
@@ -135,7 +134,7 @@ sub getSite {
 		alarm $options{timeout};
 		my $socket = new IO::Socket::INET(PeerAddr => $baseURL, PeerPort => $port, Proto => $proto);
 		unless($socket) {
-			warn "Konnte kein Socket erstellen!";
+			warn "Socket could not be created.";
 			exit(0);
 		} else {
 			print $socket "GET $baseFile HTTP/1.0\r\n";
